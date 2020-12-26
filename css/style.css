@@ -1,0 +1,32 @@
+.home_nav{
+	color: blue;
+}
+.profile_upload{
+	width: 200px !important;
+    height: 99px;
+    overflow: hidden;
+    margin: 0 40%;
+    padding: 200px 0 0 0 !important;
+    box-sizing: border-box;
+    background: url(../image/plus.png) center center no-repeat #e4e4e4;
+    border-radius: 20px;
+    background-size: cover;
+}
+.image_upload{
+    display: none;
+    width: 20%;
+    height: 30%;
+    border:solid #000000;
+}
+.change_profile{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 41.2%;
+    margin: 0.5%;
+    display: none;
+}
+.profile_icon{
+    width: 50px;
+    border-radius: 50%;
+}

@@ -1,0 +1,74 @@
+<?php
+    class Create_Res_Partner{
+
+        private $conn;
+        private $table_name ='res_partner';
+        function __construct($db){
+            $this->conn = $db;
+        }
+        public function Create_User_Info($request){
+        	$name=$request["name"];
+        	$email=$request["email"];
+        	$nrc_no=$request["nrc_no"];
+        	$phone_no=$request["phone_no"];
+        	$mobile_no=$request["mobile_no"];
+        	$address=$request["address"];
+        	$password=$request["password"];
+        	$gender=$request["gender"];
+        	$profile=$request["profile"];
+        	$birthday=$request["birthday"];
+
+        	$query="INSERT INTO ".$this->table_name."(user_name,email,nrc_no,phone_no,mobile_no,address,password,gender,profile,birthday) VALUES ('$name','$email','$nrc_no','$phone_no','$mobile_no','$address','$password','$gender','$profile','$birthday')";
+            
+            $insert = $this->conn->prepare($query);
+            $data=$insert->execute();
+            if($data){
+            	return "1";
+            }else{
+            	return "2";
+            }
+        }
+        public function Validation_Email($request){
+            $email=$request["email"];
+            $sql="SELECT * FROM ".$this->table_name." WHERE email='$email'";
+            $select = $this->conn->prepare($sql);
+            $check=$select->execute();
+            $data=$select->fetchAll(PDO::FETCH_ASSOC);
+            if($data){
+                return "1";
+            }else{
+                return "2";
+            }
+        }
+        public function Validation_Nrc_No($request){
+            $nrc_no=$request["nrc_no"];
+            $sql="SELECT * FROM ".$this->table_name." WHERE nrc_no='$nrc_no'";
+            $select = $this->conn->prepare($sql);
+            $check=$select->execute();
+            $data=$select->fetchAll(PDO::FETCH_ASSOC);
+            if($data){
+                return "1";
+            }else{
+                return "2";
+            }
+        }
+        public function Login_Page($request){
+            $email=$request["email"];
+            $sql="SELECT * FROM ".$this->table_name." WHERE email='$email'";
+            $select = $this->conn->prepare($sql);
+            $check=$select->execute();
+            $data=$select->fetch(PDO::FETCH_ASSOC);
+            if($data){
+                $correct=password_verify($request["password"],$data['password']);
+                if($correct){
+                    return $data;
+                }else{
+                    
+                    return "2";
+                }
+            }else{
+                return "3";
+            }
+        }
+    }
+?>
