@@ -81,12 +81,15 @@
  			"product_type"=>"Product type",
  			"tea_type"=>["Tea Wet","Tea Dry"],
  			"vali_name"=>"Name of the village",
- 			"vali_value"=>["Kyauk Su","Kyauk Tyim","Koung Mine","Nyar Bime","Kyue Mee"],
+ 			"vali_value"=>["Kyauk Su","Kyauk Tyim","Koung Mine","Nyar Bime","Kyue Mee","Other"],
  			"product_amount"=>"Product Amount (Kg)",
  			"product_price"=>"Product Price (Kyats)",
  			"total_price"=>"Total Price (Kyats)",
  			"enter_product_price"=>"Please enter product prices",
  			"enter_product_amount"=>"Please enter product amounts",
  			"no_more_than"=>"Enter 4 digits only.",
+ 			"create_product_success"="Create is success.",
+ 			"submit_btn"=>"Confirm",
+ 			"check_list"=>"Check Product Detail",
  		);
 ?>

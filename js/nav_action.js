@@ -26,6 +26,10 @@ $(document).ready(function(){
 			}
 		});
 	});
+	$(".check_list_btn").click(function(){
+		console.log("hello world");
+		window.location.href="../view/product_buy.php";
+	})
 });
 function Page_Link(page,url){
 	var page_name = page.toLowerCase();
