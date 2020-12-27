@@ -1,13 +1,11 @@
 <?php
 require_once "header.php";
 require_once "../ajax/join_ajax.php";
-require "../ajax/register.php";
 ?>
 
 <div class="container">
 	<h4 class="text-center text-success my-2"><?php echo $lang["register_page"]?></h4>
-	<form action="" method="POST" class="register_form" enctype="multipart/form-data">
-		<input type="hidden" name="register" value="register form">
+	<form action="" method="POST" enctype="multipart/form-data">
 		<div class="row d-flex justify-content-center">
 			<input type="file" name="profile" class="profile_upload">
 			<img src="" class="image_upload">
@@ -345,7 +343,34 @@ require "../ajax/register.php";
 			}
 		}
 		if(check["first_name"]=="" && check["last_name"]=="" && check["email"]=="" && check["nrc_no"]=="" && check["phone_no"]=="" && check["mobile_no"]=="" && check["address"]=="" && check["password"]=="" && check["confirm_password"]=="" && check["birthday"]==""){
-			$(".register_form").submit();
+
+		var last_name=$(".last_name").val();
+		var email=$(".email").val();
+		var state_no=$(".state_no").val();
+		var district_name=$(".district_name").val();
+		var naing_other=$(".naing_other").val();
+		var nrc_no=$(".nrc_no").val();
+		var birthday=$(".birthday").val();
+		var phone_no=$(".phone_no").val();
+		var mobile_no=$(".mobile_no").val();
+		var gender=$(".gender").val();
+		var address=$(".address").val();
+		var password=$("#password").val();
+		var con_password=$(".confirm_password").val();
+		var email_format=/^[a-z0-9]+@([a-z]+\.)+[a-z]{2,5}$/;
+		var profile=$(".image_upload").attr("src");
+			$.ajax({
+					url:"../ajax/register.php",
+					type:"POST",
+					data:{"first_name":first_name,"last_name":last_name,"email":email,"state_no":state_no,"district_name":district_name,"naing_other":naing_other,"nrc_no":nrc_no,"birthday":birthday,"phone_no":phone_no,"mobile_no":mobile_no,"gender":gender,"address":address,"password":password,"profile":image[1],"register":"register form"},
+					success: function(data){
+						if(data==1){
+							window.location.href="login.php";
+						}else{
+							alert("error");
+						}
+					}
+			});
 		}else{
 			
 		}
