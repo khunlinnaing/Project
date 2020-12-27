@@ -29,8 +29,8 @@
 		if ($result->num_rows > 0) {
 		  // output data of each row
 		  while($row = $result->fetch_assoc()) {
-		    // echo "id: " . $row["id"]. " - Name: " . $row["name"]. "<img src='data:image;base64," .$row["image"]. "'><br>";
-		    echo $row["profile"];
+		    echo "id: " . $row["id"]. " - Name: " . $row["user_name"]. "<img src='data:image;base64," .$row["profile"]. "'><br>";
+		    
 		  }
 		} else {
 		  echo "0 results";

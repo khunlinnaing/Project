@@ -20,15 +20,7 @@
 			
 			$result=$create_user->Create_User_Info($data);
 			print_r($result);
-			die();
-			if($result==1){
-				echo "<script>window.location.href='login.php';</script>";
-			}
 	}
-
-
-
-
 
 if(isset($_POST["check_email"])){
 	$data=array("email"=>$_POST["email"]);
