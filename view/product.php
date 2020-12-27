@@ -9,30 +9,34 @@ if(isset($_SESSION['user_id'])){
 	<div class="row d-flex justify-content-center">
 		<img src="../image/logo.png" class="rounded-circle" style="width: 168px;">
 	</div>
-	<h3 class="text-center my-1">hello world</h3>
+	<h3 class="text-center my-1"><?php echo $lang["buy_tea"];?></h3>
 	<div class="row">
 		<div class="col-lg-2 col-md-2">
 			<div class="form-group">
-				<label  class="form-control border-0">Customer Name</label>
+				<label  class="form-control border-0"><?php echo $lang["customer_name"];?></label>
 			</div>
 		</div>
 		<div class="col-lg-10 col-md-10">
 			<div class="form-group">
-				<input type="text" class="form-control customer" placeholder="Please enter your customer name">
+				<input type="text" class="form-control customer" placeholder="<?php echo $lang["enter_customer"];?>">
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-2 col-md-2">
 			<div class="form-group">
-				<label  class="form-control border-0">Product type</label>
+				<label  class="form-control border-0"><?php echo $lang["product_type"];?></label>
 			</div>
 		</div>
 		<div class="col-lg-10 col-md-10">
 			<div class="form-group">
 				<select class="form-control select_tea_type">
-					<option>wet tea</option>
-					<option>dry tea</option>
+					<?php
+					$i=0;
+					foreach ($lang["tea_type"] as $tea) {
+						echo "<option value='".$i++."'>".$tea."</option>";
+					}
+					?>
 				</select>
 			</div>
 		</div>
@@ -40,14 +44,18 @@ if(isset($_SESSION['user_id'])){
 	<div class="row">
 		<div class="col-lg-2 col-md-2">
 			<div class="form-group">
-				<label  class="form-control border-0">Valiage Name</label>
+				<label  class="form-control border-0"><?php echo $lang["vali_name"];?></label>
 			</div>
 		</div>
 		<div class="col-lg-10 col-md-10">
 			<div class="form-group">
 				<select class="form-control valiage_name">
-					<option>wet tea</option>
-					<option>dry tea</option>
+					<?php
+					$i=0;
+					foreach ($lang["vali_value"] as $valliage) {
+						echo "<option value='".$i++."'>".$valliage."</option>";
+					}
+					?>
 				</select>
 			</div>
 		</div>
@@ -55,36 +63,36 @@ if(isset($_SESSION['user_id'])){
 	<div class="row">
 		<div class="col-lg-2 col-md-2">
 			<div class="form-group">
-				<label  class="form-control border-0">Product Amount</label>
+				<label  class="form-control border-0"><?php echo $lang["product_amount"];?></label>
 			</div>
 		</div>
 		<div class="col-lg-10 col-md-10">
 			<div class="form-group">
-				<input type="text" class="form-control product_amount" placeholder="Please enter product amount">
+				<input type="text" class="form-control product_amount" placeholder="<?php echo $lang["enter_product_amount"];?>">
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-2 col-md-2">
 			<div class="form-group">
-				<label  class="form-control border-0">Product Price</label>
+				<label  class="form-control border-0"><?php echo $lang["product_price"];?></label>
 			</div>
 		</div>
 		<div class="col-lg-10 col-md-10">
 			<div class="form-group">
-				<input type="text" class="form-control product_price" placeholder="Please enter product price" >
+				<input type="text" class="form-control product_price" placeholder="<?php echo $lang["enter_product_price"];?>" >
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-2 col-md-2">
 			<div class="form-group">
-				<label  class="form-control border-0">Total Price</label>
+				<label  class="form-control border-0"><?php echo $lang["total_price"];?></label>
 			</div>
 		</div>
 		<div class="col-lg-10 col-md-10">
 			<div class="form-group">
-				<input type="text" class="form-control product_price" value="0" readonly >
+				<input type="text" class="form-control total_price" value="0" readonly >
 			</div>
 		</div>
 	</div>
@@ -94,6 +102,11 @@ if(isset($_SESSION['user_id'])){
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+	})
+</script>
 <?php
 	require "footer.php";
 	}else{

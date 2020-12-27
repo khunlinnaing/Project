@@ -30,16 +30,22 @@
 				return false;
 			}
 		});
-		$(".product_amount,.product_price").bind('input', function(e) {
+		$(".product_amount,.product_price").bind('input', function() {
+			$(this).parent("div").children("p").remove();
+			$(this).removeClass("border border-danger");
 			var val=$(this).val();
-			if(val[0]==0){
-				$(this).parent("div").append("<p class='text-danger'><?php echo $lang["nrc_digit_error"];?></p>");
+			var thousand_spearator_emove=val.replace(/\,/g,'');
+			var add_thousand_spearator=thousand_spearator_emove[0]+thousand_spearator_emove[1]+thousand_spearator_emove[2]+thousand_spearator_emove[3];
+			if(thousand_spearator_emove[0]==0){
+				$(this).parent("div").append("<p class='text-danger'><?php echo $lang["start_0"];?></p>");
 				$(this).addClass("border border-danger");
 				$(this).val("");
-			}else if(val.length > 4){
-				$(this).parent("div").append("<p class='text-danger'><?php echo $lang["nrc_digit_error"];?></p>");
+			}else if(thousand_spearator_emove.length > 4){
+				$(this).parent("div").append("<p class='text-danger'><?php echo $lang["no_more_than"];?></p>");
 				$(this).addClass("border border-danger");
-				$(this).val(val[0]+val[1]+val[2]+val[3]);
+				$(this).val(add_thousand_spearator.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+			}else{
+				$(this).val(thousand_spearator_emove.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 			}
 		});
 		$(".logout").click(function(){

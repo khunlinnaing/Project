@@ -56,8 +56,9 @@
           <li class="nav-item ">
             <a class="nav-link login_nav" name="login"><?php echo $lang["login"];?></a>
           </li>
+          <? } ?>
           <li class="nav-item" >
-              <select class="mt-2" id="choosen_languages">
+              <select class="mt-3" id="choosen_languages">
                 <?php if($_SESSION["lang"]== "en"){ ?>
                   <option value="en"><?php echo $lang["english"];?></option>
                   <option value="my"><?php echo $lang["myanmar"];?></option>
@@ -67,7 +68,6 @@
               <?php } ?>
               </select>
           </li>
-        <? } ?>
     </ul>
   </div>
 </nav>
