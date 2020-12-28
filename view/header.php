@@ -19,10 +19,10 @@
         <a class="nav-link home_nav" name="home"><?php echo $lang["home"];?></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link product_nav" name="product">Product</a>
+        <a class="nav-link product_nav" name="product"><?php echo $lang["product"];?></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link product_buy_nav" name="product_buy">Product_buy</a>
+        <a class="nav-link product_buy_nav" name="product_buy"><?php echo $lang["product_buy"];?></a>
       </li>
       <li class="nav-item">
         <a class="nav-link product_sale_nav" name="product_sale">Product_sale</a>

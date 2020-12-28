@@ -1,5 +1,5 @@
 <?php
-require "../data_config/config.php";
+	require "../data_config/config.php";
 	require "../classes/products.class";
 	$database=new Database_Connection();
 	$db=$database->getConnection();

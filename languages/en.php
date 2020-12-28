@@ -3,6 +3,8 @@
  			"english"=>"English",
  			"myanmar"=>"Myanmar",
  			"home"=>"Home",
+ 			"product_buy"=>"buy products daily",
+ 			"product"=>"Buy tea daily",
  			"login"=>"Login",
  			"login_pag"=>"To login herer",
  			"email"=>"Email",
@@ -88,8 +90,9 @@
  			"enter_product_price"=>"Please enter product prices",
  			"enter_product_amount"=>"Please enter product amounts",
  			"no_more_than"=>"Enter 4 digits only.",
- 			"create_product_success"="Create is success.",
+ 			"create_product_success"=>"Create is success.",
  			"submit_btn"=>"Confirm",
- 			"check_list"=>"Check Product Detail",
+ 			"check_list"=>"Check the details of the tea list purchased",
+ 			"buy_tea_today"=>"Buy tea today",
  		);
 ?>
