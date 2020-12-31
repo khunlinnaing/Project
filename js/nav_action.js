@@ -30,11 +30,8 @@ $(document).ready(function(){
 		console.log("hello world");
 		window.location.href="../view/product_buy.php";
 	});
-	$(".prod_buy_today").click(function(){
-		$(".prod_buy_today_form").submit();
-	});
-	$(".buy_day_buy_day").click(function(){
-		$(".check_day_buy_day_form").submit();
+	$(".prod_buy_today,.buy_day_buy_day,.buy_month_during_year,.management_member").click(function(){
+		$(this).children("form").submit();
 	});
 
 });
