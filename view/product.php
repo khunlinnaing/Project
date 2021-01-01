@@ -113,6 +113,7 @@ if(isset($_SESSION['user_id'])){
 			$(".customer").removeClass("border border-danger");
 		});
 		$(".prodcut_submit").on("click",function(){
+			$(".create_success").remove();
 			$(".customer,.product_amount,.product_price").parent("div").children("p").remove();
 			$(".customer,.product_amount,.product_price").removeClass("border border-danger");
 			var customer=$(".customer").val();
@@ -159,7 +160,7 @@ if(isset($_SESSION['user_id'])){
 					success:function(data){
 						console.log(data);
 						if(data==1){
-							$(".user_id").after('<div class="alert alert-success create_success text-center mt-3" role="alert"><?php echo $lang["create_product_success"]?></div>');
+							$(".user_id").after('<div class="alert create_success alert-success create_success text-center mt-3" role="alert"><?php echo $lang["create_product_success"]?></div>');
 							$(".customer").val("");
 							$(".product_amount").val("");
 							$(".product_price").val("");

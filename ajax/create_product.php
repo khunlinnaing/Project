@@ -9,4 +9,10 @@ if (isset($_POST["create_product"])) {
 	$result=$create_products->Create_Products_Buy_Daily($data);
 	print_r($result);
 }
+if(isset($_POST["action"])){
+	$data=array("create_date"=>$_POST["today_date"],"page"=>$_POST["page"]);
+	$result=$create_products->Select_By_Today_Date($data);
+	$result_value_encode=json_encode($result);
+	print_r($result_value_encode);
+}
 ?>

@@ -33,7 +33,7 @@ $(document).ready(function(){
 	$(".prod_buy_today,.buy_day_buy_day,.buy_month_during_year,.management_member").click(function(){
 		$(this).children("form").submit();
 	});
-
+	
 });
 function Page_Link(page,url){
 	var page_name = page.toLowerCase();
