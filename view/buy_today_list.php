@@ -85,7 +85,8 @@ $date=date("Y-m-d");
 		      <th scope="col"><?php echo $lang["product_amount"];?></th>
 		      <th scope="col"><?php echo $lang["product_price"];?></th>
 		      <th scope="col"><?php echo $lang["total_price"];?></th>
-		    </tr>
+		      <th scope="cocl p-1"><?php echo $lang["action"]; ?></th>
+		     </tr>
 		  </thead>
 		  <tbody class="product_buy_today_all">
 		    
@@ -119,13 +120,30 @@ $date=date("Y-m-d");
 			Pagination_For_Today_Buy(result,pagination,count_number,total_people,total_value);
 		}
 	});
+	$.ajax({
+		url:"../ajax/create_product.php",
+		type:"POST",
+		data:{"chcek_daily":"check daily product","date":$(".search_by_today_date").val()},
+		success: function(data){
+			if(data==1){
+					$(".save_daily_report").attr("disabled","disabled");
+					$(".save_daily_report").text("<?php echo $lang['finish_save']?>")
+			}else{
+				$(".save_daily_report").removeClass("disabled");
+			}
+		}
+	});
 	$(".save_daily_report").click(function(){
 		$.ajax({
 			url:"../ajax/create_product.php",
 			type:"POST",
 			data:{"action_save":"save in daily table","user_id":$(".user_id").val(),"date":$(".search_by_today_date").val()},
 			success:function(data){
-				console.log(data);
+				if(data==11){
+					window.location.reload(true);
+				}else{
+
+				}
 			}
 		});
 	});
@@ -135,7 +153,7 @@ $date=date("Y-m-d");
 			$.ajax({
 				url:"../ajax/create_product.php",
 				type:"POST",
-				data:{"action":"auto select by today","today_date":$(".search_by_today_date").val(),"page":"1","product_type":$(".select_tea_type").val(),"customer_name":$(".search_by_customer_name").val()},
+				data:{"action":"auto select by today","today_date":$(".search_by_today_date").val(),"page":$(this).text(),"product_type":$(".select_tea_type").val(),"customer_name":$(".search_by_customer_name").val()},
 				success:function(data){
 					$(".product_buy_today_all").children("tr").remove();
 					$(".today_buy_paginnation").children("li").remove();
@@ -222,7 +240,7 @@ $date=date("Y-m-d");
 				}else{
 					var valiage_name="<?php echo $lang["vali_value"][5] ?>";
 				}
-				$(".product_buy_today_all").append("<tr><td>"+(count++)+"</td><td>"+result[i].customer_name+"</td><td>"+tea_type+"</td><td>"+valiage_name+"</td><td>"+(result[i].product_amount).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td>"+(result[i].product_price).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td>"+(result[i].total).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td></tr>");
+				$(".product_buy_today_all").append("<tr><td>"+(count++)+"</td><td>"+result[i].customer_name+"</td><td>"+tea_type+"</td><td>"+valiage_name+"</td><td>"+(result[i].product_amount).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td>"+(result[i].product_price).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td>"+(result[i].total).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td class='p-1'><div class='row'><input type='hidden' class='product_id' value='"+result[i].id+"'><button class='btn bg-success edit_btn_today text-white'><?php echo $lang['edit']?></button><button class='btn bg-danger delete_btn_today text-white'><?php echo $lang['delete']?></button></div></td></tr>");
 			}
 			if(pagination){
 				// $(".today_buy_paginnation").append('<li class="page-item previous"><a class="page-link" aria-label="Previous" href="javascript:prevPage()"><span aria-hidden="true">&laquo;</span></a></li>');

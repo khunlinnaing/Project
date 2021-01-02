@@ -110,6 +110,9 @@
  			"number_of_people"=>"Number Of People",
  			"total_amount"=>"Total amount(Kg)",
  			"save"=>"Save",
- 			
+ 			"action"=>"Action",
+ 			"edit"=>"Edit",
+ 			"delete"=>"Delete",
+ 			"finish_save"=>"Finish Saving",			
  		);
 ?>

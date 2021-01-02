@@ -17,7 +17,21 @@ if(isset($_POST["action"])){
 }
 if(isset($_POST["action_save"])){
 	$data=array("user_id"=>$_POST["user_id"],"date"=>$_POST["date"]);
-	$result=$create_products->Save_To_Daily_Table($data);
+	$result=$create_products->Select_Data_Today($data);
+	if(isset($result)){
+		$daily_save=array("user_id"=>$_POST["user_id"],"d_type"=>"","d_amount"=>"","d_total"=>"","date"=>$_POST["date"]);
+		for($i=0; $i< count($result); $i++){
+			$daily_save["d_type"]=$result[$i]["product_type"];
+			$daily_save["d_amount"]=$result[$i]["d_product_amount"];
+			$daily_save["d_total"]=$result[$i]["d_total"];
+			$daily_result=$create_products->Save_To_Daily_Table($daily_save);
+			print_r($daily_result);
+		}
+	}
+}
+if(isset($_POST["chcek_daily"])){
+	$data=array("today_date"=>$_POST["date"]);
+	$result=$create_products->Check_Daily_Tea($data);
 	print_r($result);
 }
 ?>

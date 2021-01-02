@@ -73,7 +73,7 @@
             }
             
         }
-        public function Save_To_Daily_Table($request){
+        public function Select_Data_Today($request){
             $today_date=$request["date"];
             $user_id=$request["user_id"];
             $query="SELECT product_type,SUM(product_amount) as d_product_amount,SUM(total) as d_total FROM ".$this->table_name." WHERE DATE(create_date)='$today_date' GROUP BY product_type";
@@ -82,6 +82,33 @@
             $result = $data->fetchAll();
             if($result){
                 return $result;
+            }
+        }
+        public function Save_To_Daily_Table($request){
+            $user_id=$request["user_id"];
+            $d_type=$request["d_type"];
+            $d_amount=$request['d_amount'];
+            $d_total=$request['d_total'];
+            $d_date=$request['date'];
+            $query="INSERT INTO daily_tea_buy(d_user_id,d_type,d_product_amount,d_todal_price,daily_create) VALUES ('$user_id','$d_type','$d_amount','$d_total','$d_date')";
+            $insert = $this->conn->prepare($query);
+            $data=$insert->execute();
+            if($data){
+                return "1";
+            }else{
+                return "0";
+            }
+        }
+        public function Check_Daily_Tea($request){
+            $date=$request["today_date"];
+            $select="SELECT * FROM daily_tea_buy WHERE daily_create='$date'";
+            $statement = $this->conn->prepare($select);
+            $statement->execute();
+            $result = $statement->fetchAll();
+            if($result){
+                return "1";
+            }else{
+                return "0";
             }
         }
     }
