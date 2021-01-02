@@ -107,5 +107,9 @@
  			"month_label"=>"Month",
  			"month_name"=>["January","February","March","April","May","June","July","August","September","October","November","December"],
  			"date"=>"Date",
+ 			"number_of_people"=>"Number Of People",
+ 			"total_amount"=>"Total amount(Kg)",
+ 			"save"=>"Save",
+ 			
  		);
 ?>
