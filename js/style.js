@@ -43,6 +43,17 @@ $(document).ready(function(){
 		}
 		$(".total_price").val(result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	});
+	$(document).on("click",".edit_btn_today",function(){
+		var type=$(this).parent("div").parent("td").parent("tr").children("td:eq(2)").children(".modual_product_type").val();
+		var valiage_name=$(this).parent("div").parent("td").parent("tr").children("td:eq(3)").children(".customer_valiage_name").val();
+		$("#update_modal_today").modal("show");
+		$(".update_customer_name").val($(this).parent("div").parent("td").parent("tr").children("td:eq(1)").text());
+		$(".update_product_type").val(type).change();
+		$(".update_valiage_name").val(valiage_name).change();
+		$(".update_product_amount").val($(this).parent("div").parent("td").parent("tr").children("td:eq(4)").text());
+		$(".update_product_price").val($(this).parent("div").parent("td").parent("tr").children("td:eq(5)").text());
+		$(".updat_total_price").val($(this).parent("div").parent("td").parent("tr").children("td:eq(6)").text());
+	});
 	
 })
 

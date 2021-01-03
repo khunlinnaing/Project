@@ -113,6 +113,7 @@
  			"action"=>"Action",
  			"edit"=>"Edit",
  			"delete"=>"Delete",
- 			"finish_save"=>"Finish Saving",			
+ 			"finish_save"=>"Finish Saving",	
+ 			"close"=>"Close",		
  		);
 ?>

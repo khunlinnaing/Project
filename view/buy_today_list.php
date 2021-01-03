@@ -240,7 +240,7 @@ $date=date("Y-m-d");
 				}else{
 					var valiage_name="<?php echo $lang["vali_value"][5] ?>";
 				}
-				$(".product_buy_today_all").append("<tr><td>"+(count++)+"</td><td>"+result[i].customer_name+"</td><td>"+tea_type+"</td><td>"+valiage_name+"</td><td>"+(result[i].product_amount).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td>"+(result[i].product_price).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td>"+(result[i].total).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td class='p-1'><div class='row'><input type='hidden' class='product_id' value='"+result[i].id+"'><button class='btn bg-success edit_btn_today text-white'><?php echo $lang['edit']?></button><button class='btn bg-danger delete_btn_today text-white'><?php echo $lang['delete']?></button></div></td></tr>");
+				$(".product_buy_today_all").append("<tr><td>"+(count++)+"</td><td>"+result[i].customer_name+"</td><td><input type='hidden' class='modual_product_type' value='"+result[i].product_type+"'>"+tea_type+"</td><td><input type='hidden' class='customer_valiage_name' value='"+result[i].valliage_name+"'>"+valiage_name+"</td><td>"+(result[i].product_amount).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td>"+(result[i].product_price).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td>"+(result[i].total).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,")+"</td><td class='p-1'><div class='row'><input type='hidden' class='product_id' value='"+result[i].id+"'><button class='btn bg-success edit_btn_today text-white'><?php echo $lang['edit']?></button><button class='btn bg-danger delete_btn_today text-white'><?php echo $lang['delete']?></button></div></td></tr>");
 			}
 			if(pagination){
 				// $(".today_buy_paginnation").append('<li class="page-item previous"><a class="page-link" aria-label="Previous" href="javascript:prevPage()"><span aria-hidden="true">&laquo;</span></a></li>');
@@ -257,3 +257,109 @@ $date=date("Y-m-d");
 		
 	}
 </script>
+<!-- update Modal -->
+<div class="modal fade" id="update_modal_today" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center w-100 text-success"><?php echo $lang["action"]; ?></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-lg-4 col-md-4">
+      			<div class="form-group">
+      				<label><?php echo $lang["customer_name"];?></label>
+        		</div>
+      		</div>
+      		<div class="col-lg-8 col-md-8">
+      			<div class="form-group">
+      				<input type="text" class="update_customer_name form-control">
+        		</div>
+      		</div>
+        </div>
+        <div class="row">
+      		<div class="col-lg-4 col-md-4">
+      			<div class="form-group">
+      				<label><?php echo $lang["product_type"];?></label>
+        		</div>
+      		</div>
+      		<div class="col-lg-8 col-md-8">
+      			<div class="form-group">
+  					<select class="form-control update_product_type">
+						<?php
+						$i=0;
+						foreach ($lang["tea_type"] as $tea) {
+							echo "<option value='".$i++."'>".$tea."</option>";
+						}
+						?>
+					</select> 
+        		</div>
+      		</div>
+        </div>
+        <div class="row">
+      		<div class="col-lg-4 col-md-4">
+      			<div class="form-group">
+      				<label><?php echo $lang["vali_name"];?></label>
+        		</div>
+      		</div>
+      		<div class="col-lg-8 col-md-8">
+      			<div class="form-group">
+      				<!-- <input type="text" class="update_valiage_name form-control"> -->
+      				<select class="form-control update_valiage_name">
+						<?php
+						$i=0;
+						foreach ($lang["vali_value"] as $tea) {
+							echo "<option value='".$i++."'>".$tea."</option>";
+						}
+						?>
+					</select> 
+        		</div>
+      		</div>
+        </div>
+        <div class="row">
+      		<div class="col-lg-4 col-md-4">
+      			<div class="form-group">
+      				<label><?php echo $lang["product_amount"];?></label>
+        		</div>
+      		</div>
+      		<div class="col-lg-8 col-md-8">
+      			<div class="form-group">
+      				<input type="text" class="update_product_amount form-control">
+        		</div>
+      		</div>
+        </div>
+        <div class="row">
+      		<div class="col-lg-4 col-md-4">
+      			<div class="form-group">
+      				<label><?php echo $lang["product_price"];?></label>
+        		</div>
+      		</div>
+      		<div class="col-lg-8 col-md-8">
+      			<div class="form-group">
+      				<input type="text" class="update_product_price form-control">
+        		</div>
+      		</div>
+        </div>
+        <div class="row">
+      		<div class="col-lg-4 col-md-4">
+      			<div class="form-group">
+      				<label><?php echo $lang["total_price"];?></label>
+        		</div>
+      		</div>
+      		<div class="col-lg-8 col-md-8">
+      			<div class="form-group">
+      				<input type="text" class="form-control updat_total_price">
+        		</div>
+      		</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success confirm_update_today_product"><?php echo $lang["submit_btn"]; ?></button>
+        <button type="button" class="btn" data-dismiss="modal"><?php echo $lang["close"]; ?></button>
+      </div>
+    </div>
+  </div>
+</div>

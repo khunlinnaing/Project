@@ -42,13 +42,13 @@
             }
             if(isset($request["customer_name"]) && $request["product_type"] == 0){
                 $search=$request['customer_name'];
-                $searchq=preg_replace("#[^0-9a-zA-z -/\u1031]#i","",$search);
+                $searchq=preg_replace("#[^0-9a-zA-z -/]#i","",$search);
                 $query="SELECT * FROM ".$this->table_name." WHERE customer_name LIKE '%$searchq%' AND DATE(create_date)='$date'";
                 $sum="SELECT SUM(product_amount) as total_amount,SUM(total) as total_price FROM ".$this->table_name." WHERE customer_name LIKE '%$searchq%' AND DATE(create_date)='$date'";
             }else if(isset($request["customer_name"]) && $request["product_type"] != 0){
                 $search=$request['customer_name'];
                 $product_type=((integer)$request['product_type']-1);
-                $searchq=preg_replace("#[^0-9a-zA-z -/\u1031]#i","",$search);
+                $searchq=preg_replace("#[^0-9a-zA-z -/]#i","",$search);
                 $query="SELECT * FROM ".$this->table_name." WHERE customer_name LIKE '%$searchq%' AND DATE(create_date)='$date' AND product_type='$product_type'";
                 $sum="SELECT SUM(product_amount) as total_amount,SUM(total) as total_price FROM ".$this->table_name." WHERE customer_name LIKE '%$searchq%' AND  DATE(create_date)='$date' AND product_type='$product_type'";
             }else{
