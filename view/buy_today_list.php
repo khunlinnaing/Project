@@ -138,10 +138,6 @@ $date=date("Y-m-d");
 			}
 		}
 	});
-	$(".download_today_report").on("click",function(){
-		console.log("hello world");
-
-	});
 	$(".save_daily_report").click(function(){
 		$.ajax({
 			url:"../ajax/create_product.php",
@@ -231,7 +227,7 @@ $date=date("Y-m-d");
 					alert('<?php echo $lang["update_success"]?>');
 					window.location.reload(true);
 				}else{
-					alert('<?php echo $lang["update_not_success"]?>');
+					alert("<?php echo $lang["update_not_success"]?>");
 				}
 			}
 		});
@@ -246,7 +242,7 @@ $date=date("Y-m-d");
 					alert('<?php echo $lang["delete_success"]?>');
 					window.location.reload(true);
 				}else{
-					alert('<?php echo $lang["delete_not_success"]?>');
+					alert("<?php echo $lang["delete_not_success"]?>");
 				}
 			}
 		})

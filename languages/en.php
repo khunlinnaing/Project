@@ -120,5 +120,6 @@
  			"update_not_success"=>"update isn't success",
  			"delete_success"=>"delete is successfully",
  			"delete_not_success"=>"update isn't success",
+ 			"no_result"=>"No result",
  		);
 ?>
