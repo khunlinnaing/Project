@@ -73,7 +73,10 @@ $date=date("Y-m-d");
 <div class="container">
 
 	<div class="row my-2">
-		<button class="btn bg-success text-white"><?php echo $lang["download_report"];?></button>
+		<form action="../action/today_report_excel.php" method="post">
+			<input type="hidden" name="today_date_report" value="<?php echo date("Y-m-d"); ?>">
+			<button class="btn bg-success text-white download_today_report"><?php echo $lang["download_report"];?></button>
+		</form>
 	</div>
 	<div class="row alter_successful_delete_update"></div>
 	<div class="row">
@@ -134,6 +137,10 @@ $date=date("Y-m-d");
 				$(".save_daily_report").removeClass("disabled");
 			}
 		}
+	});
+	$(".download_today_report").on("click",function(){
+		console.log("hello world");
+
 	});
 	$(".save_daily_report").click(function(){
 		$.ajax({
