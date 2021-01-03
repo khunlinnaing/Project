@@ -71,9 +71,11 @@ $date=date("Y-m-d");
 	</div>
 </div>
 <div class="container">
+
 	<div class="row my-2">
 		<button class="btn bg-success text-white"><?php echo $lang["download_report"];?></button>
 	</div>
+	<div class="row alter_successful_delete_update"></div>
 	<div class="row">
 		<table class="table">
 		  <thead class="thead-dark">
@@ -212,6 +214,36 @@ $date=date("Y-m-d");
 			}
 		});
 	});
+	$(document).on("click",".confirm_update_today_product",function(){
+		$.ajax({
+			url:"../ajax/create_product.php",
+			type:"POST",
+			data:{"action_update":"update Product value","up_by_id":$(".update_by_product_id").val(),"up_customer_name":$(".update_customer_name").val(),"up_product_type":$(".update_product_type").val(),"up_valiage_name":$(".update_valiage_name").val(),"up_product_amount":$(".update_product_amount").val(),"up_product_price":$(".update_product_price").val(),"up_total_price":$(".updat_total_price").val()},
+			success: function(data){
+				if(data==1){
+					alert('<?php echo $lang["update_success"]?>');
+					window.location.reload(true);
+				}else{
+					alert('<?php echo $lang["update_not_success"]?>');
+				}
+			}
+		});
+	});
+	$(document).on("click",".confirm_delete_today_product",function(){
+		$.ajax({
+			url:"../ajax/create_product.php",
+			type:"POST",
+			data:{"action_delete":"Sure to delete","product_id":$(".delete_by_product_id").val()},
+			success: function(data){
+				if(data==1){
+					alert('<?php echo $lang["delete_success"]?>');
+					window.location.reload(true);
+				}else{
+					alert('<?php echo $lang["delete_not_success"]?>');
+				}
+			}
+		})
+	})
 	function Pagination_For_Today_Buy(result,pagination,count_number,number_people,total_value){
 		if(count_number==1){
 					var count=1;
@@ -268,6 +300,7 @@ $date=date("Y-m-d");
         </button>
       </div>
       <div class="modal-body">
+      	<input type="hidden" class="update_by_product_id">
       	<div class="row">
       		<div class="col-lg-4 col-md-4">
       			<div class="form-group">
@@ -351,13 +384,29 @@ $date=date("Y-m-d");
       		</div>
       		<div class="col-lg-8 col-md-8">
       			<div class="form-group">
-      				<input type="text" class="form-control updat_total_price">
+      				<input type="text" class="form-control updat_total_price" readonly>
         		</div>
       		</div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success confirm_update_today_product"><?php echo $lang["submit_btn"]; ?></button>
+        <button type="button" class="btn" data-dismiss="modal"><?php echo $lang["close"]; ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="delete_modal_today" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<h4 class="text-center"><?php echo $lang["delete_sure"]; ?></h4>
+      	<input type="hidden" class="delete_by_product_id">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success confirm_delete_today_product"><?php echo $lang["submit_btn"]; ?></button>
         <button type="button" class="btn" data-dismiss="modal"><?php echo $lang["close"]; ?></button>
       </div>
     </div>

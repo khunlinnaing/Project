@@ -34,4 +34,14 @@ if(isset($_POST["chcek_daily"])){
 	$result=$create_products->Check_Daily_Tea($data);
 	print_r($result);
 }
+if(isset($_POST["action_update"])){
+	$data=array("product_id"=>$_POST["up_by_id"],"customer_name"=>$_POST["up_customer_name"],"product_type"=>$_POST["up_product_type"],"valiage_name"=>$_POST["up_valiage_name"],"product_amount"=>str_replace(",","",$_POST["up_product_amount"]),"product_price"=>str_replace(",","",$_POST["up_product_price"]),"total_price"=>str_replace(",","",$_POST["up_total_price"]));
+	$result=$create_products->Update_Product_Buy_Today($data);
+	print_r($result);
+}
+if(isset($_POST["action_delete"])){
+	$data=array("p_id"=>$_POST["product_id"]);
+	$result=$create_products->Delete_Product_Buy_Today($data);
+	print_r($result);
+}
 ?>

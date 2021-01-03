@@ -114,6 +114,11 @@
  			"edit"=>"Edit",
  			"delete"=>"Delete",
  			"finish_save"=>"Finish Saving",	
- 			"close"=>"Close",		
+ 			"close"=>"Close",
+ 			"delete_sure"=>"Are you sure to Delete",
+ 			"update_success"=>"Update is successfully",
+ 			"update_not_success"=>"update isn't success",
+ 			"delete_success"=>"delete is successfully",
+ 			"delete_not_success"=>"update isn't success",
  		);
 ?>

@@ -111,5 +111,34 @@
                 return "0";
             }
         }
+        public function Update_Product_Buy_Today($request){
+            $p_id=$request["product_id"];
+            $p_customer_name=$request["customer_name"];
+            $p_product_type=$request["product_type"];
+            $p_valiage_name=$request["valiage_name"];
+            $p_product_amount=$request["product_amount"];
+            $p_product_price=$request["product_price"];
+            $p_total_value=$request["total_price"];
+            $query_update="UPDATE ".$this->table_name." SET customer_name='$p_customer_name',product_type='$p_product_type',valliage_name='$p_valiage_name',product_amount='$p_product_amount',product_price='$p_product_price',total='$p_total_value' WHERE id='$p_id'";
+            $update = $this->conn->prepare($query_update);
+            $result=$update->execute();
+            if($result){
+                return "1";
+            }else{
+                return "0";
+            }
+            
+        }
+        public function Delete_Product_Buy_Today($request){
+            $p_id=$request["p_id"];
+            $delete="DELETE FROM ".$this->table_name." WHERE id='$p_id'";
+            $statement_delete = $this->conn->prepare($delete);
+            $result=$statement_delete->execute();
+            if($result){
+                return "1";
+            }else{
+                return "0";
+            }
+        }
     }
 ?>

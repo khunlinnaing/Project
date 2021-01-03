@@ -21,7 +21,7 @@
 				}
 			});
 		});
-		$(".product_amount,.product_price").bind('keypress', function(e) { 
+		$(".product_amount,.product_price,.update_product_price,.update_product_amount").bind('keypress', function(e) { 
 			$(this).parent("div").children("p").remove();
 			$(this).removeClass("border border-danger");
 			if(( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57))){
@@ -30,7 +30,7 @@
 				return false;
 			}
 		});
-		$(".product_amount,.product_price").bind('input', function() {
+		$(".product_amount,.product_price,.update_product_price,.update_product_amount").bind('input', function() {
 			$(this).parent("div").children("p").remove();
 			$(this).removeClass("border border-danger");
 			var val=$(this).val();
