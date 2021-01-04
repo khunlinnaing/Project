@@ -1,0 +1,55 @@
+<?php
+    class Monly_Buy_Tea{
+
+    	private $conn;
+        private $table_name ='daily_tea_buy';
+        function __construct($db){
+            $this->conn = $db;
+        }
+        public function Select_Daily_Products_Monthly($request){
+        	$month=$request["month_name"];
+        	$type=$request["tea_type"];
+        	$limit = '10';
+            $page = 1;
+            if((int)$request["page"] > 1)
+            {
+              $val=(((int)$request["page"])-1);
+              $start = ($val * $limit);
+              $page = (int)$request["page"];
+              $row_number=(($page-1)*(int)$limit)+1;
+            }
+            else
+            {
+              $start = 0;
+              $row_number=1;
+            } 
+            $check_type='';
+        	if($type==0){
+        		$select="SELECT id,SUM(d_product_amount) as d_product_amount,SUM(d_todal_price) as d_todal_price,daily_create,d_type FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' GROUP BY daily_create ";
+        		$count="SELECT COUNT(id),SUM(d_product_amount) as total_amount,SUM(d_todal_price) as total_price FROM ".$this->table_name." WHERE MONTH(daily_create)='$month'";
+        		$check_type="all type";
+        	}else{
+        		$type=(int)$type-1;
+        		$select="SELECT * FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' AND d_type='$type'";
+        		$count="SELECT COUNT(id),SUM(d_product_amount) as total_amount,SUM(d_todal_price) as total_price FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' AND d_type='$type'";
+        	}
+        	$filter_query = $select . 'LIMIT '.$start.', '.$limit.'';
+            $statement = $this->conn->prepare($select);
+            $statement->execute();
+            $total_data = $statement->rowCount();
+            $statement = $this->conn->prepare($filter_query);
+            $statement->execute();
+            $result = $statement->fetchAll();
+            $calculate = $this->conn->prepare($count);
+            $calculate->execute();
+            $count_value= $calculate->fetchAll();
+            $pagnation_no=ceil($total_data/$limit);
+            if($result){
+            	return array("result"=>$result,"page"=>$request["page"],"total"=>$count_value,"type"=>$check_type,"pagination"=>$pagnation_no);
+            }else{
+            	return array("result"=>"0");
+            }
+        }
+    }
+
+?>
