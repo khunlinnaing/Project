@@ -32,7 +32,8 @@ if(isset($_POST["action_save"])){
 if(isset($_POST["chcek_daily"])){
 	$data=array("today_date"=>$_POST["date"]);
 	$result=$create_products->Check_Daily_Tea($data);
-	print_r($result);
+	$value=json_encode($result);
+	print_r($value);	
 }
 if(isset($_POST["action_update"])){
 	$data=array("product_id"=>$_POST["up_by_id"],"customer_name"=>$_POST["up_customer_name"],"product_type"=>$_POST["up_product_type"],"valiage_name"=>$_POST["up_valiage_name"],"product_amount"=>str_replace(",","",$_POST["up_product_amount"]),"product_price"=>str_replace(",","",$_POST["up_product_price"]),"total_price"=>str_replace(",","",$_POST["up_total_price"]));

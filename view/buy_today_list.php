@@ -117,12 +117,18 @@ $date=date("Y-m-d");
 			$(".today_buy_paginnation").children("li").remove();
 			$(".total").children("div").remove();
 			var all_result=$.parseJSON(data);
+			
 			var result=all_result.result;
 			var pagination=all_result.pagnation;
 			var count_number=all_result.page;
 			var total_people=all_result.total;
 			var total_value=all_result.sum_value;
-			Pagination_For_Today_Buy(result,pagination,count_number,total_people,total_value);
+			if(result !=""){
+				Pagination_For_Today_Buy(result,pagination,count_number,total_people,total_value);
+			}else{
+				$(".product_buy_today_all").append("<tr></tr><tr></tr><tr><td colspan='7' class='text-center text-danger'><b><?php echo $lang["no_result"]?></b></td></tr><tr></tr><tr></tr>");
+			}
+			
 		}
 	});
 	$.ajax({
@@ -130,9 +136,14 @@ $date=date("Y-m-d");
 		type:"POST",
 		data:{"chcek_daily":"check daily product","date":$(".search_by_today_date").val()},
 		success: function(data){
-			if(data==1){
-					$(".save_daily_report").attr("disabled","disabled");
-					$(".save_daily_report").text("<?php echo $lang['finish_save']?>")
+			var result=$.parseJSON(data);
+			console.log(result);
+			if(result.tea_dat==0 && result.result==1){
+				$(".save_daily_report").attr("disabled","disabled");
+				$(".save_daily_report").text("<?php echo $lang['finish_save']?>")
+			}else if(result.tea_dat==2 && result.result==0 || result.tea_dat==2 && result.result==1){
+				$(".save_daily_report").attr("disabled","disabled");
+				$(".save_daily_report").text("<?php echo $lang['no_result_today']?>")
 			}else{
 				$(".save_daily_report").removeClass("disabled");
 			}
@@ -144,7 +155,8 @@ $date=date("Y-m-d");
 			type:"POST",
 			data:{"action_save":"save in daily table","user_id":$(".user_id").val(),"date":$(".search_by_today_date").val()},
 			success:function(data){
-				if(data==11){
+				console.log(data);
+				if(data==1){
 					window.location.reload(true);
 				}else{
 
@@ -169,7 +181,11 @@ $date=date("Y-m-d");
 					var count_number=all_result.page;
 					var total_people=all_result.total;
 					var total_value=all_result.sum_value;
-					Pagination_For_Today_Buy(result,pagination,count_number,total_people,total_value);
+					if(result !=""){
+						Pagination_For_Today_Buy(result,pagination,count_number,total_people,total_value);
+					}else{
+						$(".product_buy_today_all").append("<tr></tr><tr></tr><tr><td colspan='7' class='text-center text-danger'><b><?php echo $lang["no_result"]?></b></td></tr><tr></tr><tr></tr>");
+					}
 				}
 			});
 		});
@@ -181,17 +197,21 @@ $date=date("Y-m-d");
 			type:"POST",
 			data:{"action":"auto select by today","today_date":$(".search_by_today_date").val(),"page":"1","product_type":$(".select_tea_type").val(),"customer_name":$(".search_by_customer_name").val()},
 			success: function(data){
-				console.log(data);
 				$(".product_buy_today_all").children("tr").remove();
 				$(".today_buy_paginnation").children("li").remove();
 				$(".total").children("div").remove();
+				console.log(data);
 				var all_result=$.parseJSON(data);
 				var result=all_result.result;
 				var pagination=all_result.pagnation;
 				var count_number=all_result.page;
 				var total_people=all_result.total;
 				var total_value=all_result.sum_value;
-				Pagination_For_Today_Buy(result,pagination,count_number,total_people,total_value);
+				if(result !=""){
+					Pagination_For_Today_Buy(result,pagination,count_number,total_people,total_value);
+				}else{
+					$(".product_buy_today_all").append("<tr></tr><tr></tr><tr><td colspan='7' class='text-center text-danger'><b><?php echo $lang["no_result"]?></b></td></tr><tr></tr><tr></tr>");
+				}
 			}
 		});
 	});
@@ -213,7 +233,11 @@ $date=date("Y-m-d");
 				var count_number=all_result.page;
 				var total_people=all_result.total;
 				var total_value=all_result.sum_value;
-				Pagination_For_Today_Buy(result,pagination,count_number,total_people,total_value);
+				if(result !=""){
+					Pagination_For_Today_Buy(result,pagination,count_number,total_people,total_value);
+				}else{
+					$(".product_buy_today_all").append("<tr></tr><tr></tr><tr><td colspan='7' class='text-center text-danger'><b><?php echo $lang["no_result"]?></b></td></tr><tr></tr><tr></tr>");
+				}
 			}
 		});
 	});

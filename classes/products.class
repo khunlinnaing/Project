@@ -102,14 +102,25 @@
         public function Check_Daily_Tea($request){
             $date=$request["today_date"];
             $select="SELECT * FROM daily_tea_buy WHERE daily_create='$date'";
+            $tea="SELECT * FROM ".$this->table_name." WHERE DATE(create_date)='$date'";
             $statement = $this->conn->prepare($select);
             $statement->execute();
             $result = $statement->fetchAll();
-            if($result){
-                return "1";
-            }else{
-                return "0";
+            $tea_check = $this->conn->prepare($tea);
+            $tea_check->execute();
+            $data_tea= $tea_check->fetchAll();
+            $last_result=array("tea_dat"=>"","result"=>"");
+            if($data_tea){
+                $last_result["tea_dat"]=0;
+            }if(empty($data_tea)){
+                $last_result["tea_dat"]=2;
             }
+            if($result){
+                $last_result["result"]=1;
+            }else{
+                $last_result["result"]=0;
+            }
+            return $last_result;
         }
         public function Update_Product_Buy_Today($request){
             $p_id=$request["product_id"];

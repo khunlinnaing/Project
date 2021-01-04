@@ -121,5 +121,6 @@
  			"delete_success"=>"delete is successfully",
  			"delete_not_success"=>"update isn't success",
  			"no_result"=>"No result",
+ 			"no_result_today"=>"Today,no data to save."
  		);
 ?>
