@@ -1,6 +1,6 @@
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.nrc_no,.phone_no,.mobile_no').bind('keypress', function(e) { 
+		$('.nrc_no,.phone_no,.mobile_no,.profile_nrc_no,.profile_phone_no,.profile_mobile_no').bind('keypress', function(e) { 
 			$(this).parent("div").children("p").remove();
 			$(this).removeClass("border border-danger");
 			if(( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57))){

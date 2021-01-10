@@ -156,7 +156,7 @@ $date=date("Y-m-d");
 			data:{"action_save":"save in daily table","user_id":$(".user_id").val(),"date":$(".search_by_today_date").val()},
 			success:function(data){
 				console.log(data);
-				if(data==1){
+				if(data==1 || data==11){
 					window.location.reload(true);
 				}else{
 

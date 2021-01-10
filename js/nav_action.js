@@ -2,13 +2,18 @@ $(document).ready(function(){
 	var url=window.location.pathname.split('/');
 	var url_length=url.length;
 	$(".home_nav").css("color","blue");
-	$(".home_nav,.product_nav,.product_buy_nav,.product_sale_nav,.order_nav,.hr_nav,.register_nav,.login_nav").click(function(){
+	$(".home_nav,.product_nav,.product_buy_nav,.product_sale_nav,.order_nav,.hr_nav,.register_nav,.login_nav,.my_profile").click(function(){
 		$("ul").children("li.nav-item").removeClass("active");
 		$("ul").children("li.nav-item").children("a").css("color","rgba(0,0,0,.5)");
 		$(this).parent("li").addClass("active");
 		$(this).css("color", "blue");
 		var page=$(this).attr("name");
+		console.log(page);
 		Page_Link(page,url_length);
+	});
+	
+	$(document).on("click","#update_profile_male,#update_profile_female",function(){
+		$(".profile_gender").val($(this).val());
 	});
 	$("#choosen_languages").on("change",function(){
 		var language=$(this).val();

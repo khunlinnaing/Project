@@ -70,5 +70,37 @@
                 return "3";
             }
         }
+        public function Auto_Select_About_Login($request){
+            $user_id=$request["user_id"];
+            $sql="SELECT * FROM ".$this->table_name." WHERE id='$user_id'";
+            $select = $this->conn->prepare($sql);
+            $check=$select->execute();
+            $data=$select->fetchAll(PDO::FETCH_ASSOC);
+            if(isset($data)){
+                return $data;
+            }else{
+                return "false";
+            }
+        }
+        public function Update_Res_User($request){
+            $id=$request["user_id"];
+            $name=$request["user_name"];
+            $email=$request["email"];
+            $nrc_no=$request["nrc_no"];
+            $birthday=$request["birthday"];
+            $gender=$request["gender"];
+            $phone_no=$request["phone_no"];
+            $mobile_no=$request["mobile_no"];
+            $address=$request["address"];
+            $profile=$request["profile"];
+            $query_update="UPDATE ".$this->table_name." SET user_name='$name',email='$email',nrc_no='$nrc_no',phone_no='$phone_no',mobile_no='$mobile_no',address='$address',gender='$gender',profile='$profile',birthday='$birthday' WHERE id='$id'";
+            $update = $this->conn->prepare($query_update);
+            $result=$update->execute();
+            if($result){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
     }
 ?>

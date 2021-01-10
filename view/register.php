@@ -56,9 +56,10 @@ require_once "../ajax/join_ajax.php";
 					<label><?php echo $lang["district"]; ?></label>
 					<select class="form-control district_name" name="district">
 						<?php
+						$i=0;
 							$district_value=$lang["district_names"]["1"];
 							foreach ($district_value as $value) {
-							  echo "<option>".$value."</option>";
+							  echo "<option value='".$i++."'>".$value."</option>";
 							}
 						?>
 					</select>
@@ -67,7 +68,8 @@ require_once "../ajax/join_ajax.php";
 			<div class="col-lg-3 col-md-3">
 				<div class="form-group">
 					<label><?php echo $lang["naing_other"]; ?></label>
-					<input type="text" name="national" class="form-control naing_other" value="<?php echo $lang["naing"]; ?>" readonly>
+					<input type="text" name="national" class="form-control naing_other_1" value="<?php echo $lang["naing"]; ?>" readonly>
+					<input type="hidden" class="naing_other" value="naing">
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3">
@@ -176,6 +178,7 @@ require_once "../ajax/join_ajax.php";
 	    	type:"POST",
 	    	data:{"email":email,"check_email":"check email"},
 	    	success: function(data){
+	    		console.log(data);
 	    		if(data==1){
 	    			$(".email").parent("div").append('<p class="text-danger">'+error+'</p>');
 	    			$(".email").val("");

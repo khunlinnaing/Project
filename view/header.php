@@ -44,7 +44,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                   <button class="dropdown-item" type="button">Action</button>
-                  <button class="dropdown-item" type="button">My Profile</button>
+                  <button class="dropdown-item my_profile" name="my_profile" type="button">My Profile</button>
                   <button class="dropdown-item logout" type="button">logout</button>
                 </div>
               </div>';
@@ -56,7 +56,7 @@
           <li class="nav-item ">
             <a class="nav-link login_nav" name="login"><?php echo $lang["login"];?></a>
           </li>
-          <? } ?>
+          <?php } ?>
           <li class="nav-item" >
               <select class="mt-3" id="choosen_languages">
                 <?php if($_SESSION["lang"]== "en"){ ?>

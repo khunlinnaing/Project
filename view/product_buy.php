@@ -5,34 +5,45 @@ if(isset($_SESSION['user_id'])){
 	$date=date('d-m-Y');
 ?>
 <div class="container">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light my-3 " >
-	  <div class="collapse navbar-collapse  justify-content-center" id="navbarNavAltMarkup">
-	    <div class="navbar-nav">
-	      <a class="nav-item nav-link w-20 prod_buy_today">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light my-3">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	        <a class="nav-item nav-link w-20 prod_buy_today">
 	      	<form method="POST">
 	      		<input type="hidden" name="product_buy_today" value="buy_today_list">
 	      		<?php echo $lang["buy_tea_today"];?>
 	      	</form>
 	      </a>
-	      <a class="nav-item nav-link w-20 buy_day_buy_day">
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-item nav-link w-20 buy_day_buy_day">
 		    <form method="POST">
 		      <input type="hidden" name="product_buy_today" value="check_day_buy_day">
 		      	<?php echo $lang["buy_tea_daily_list"];?>
 		      </form>
 		   </a>
-	      <a class="nav-item nav-link w-20 buy_month_during_year">
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-item nav-link w-20 buy_month_during_year">
 	      	<form method="POST">
 		      <input type="hidden" name="product_buy_today" value="check_buy_month">
 		      	<?php echo $lang["buy_tea_monthly_list"];?>
 		    </form>
 	      </a>
-	      <a class="nav-item nav-link w-20 management_member">
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-item nav-link w-20 management_member">
 	      	<form method="POST">
 		      <input type="hidden" name="product_buy_today" value="management_department">
 		      	<?php echo $lang["management_member"];?>
 		    </form>
 	      </a>
-	    </div>
+	      </li>
+	    </ul>
 	  </div>
 	</nav>
 	<?php

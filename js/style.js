@@ -17,10 +17,10 @@ $(document).ready(function(){
 	$("#male,#female").click(function(){
 		$(".gender").val($(this).val());
 	});
-	$(".first_name,.last_name").on("input",function(){
+	$(".first_name,.last_name,.profile_user_name").on("input",function(){
 	    $(this).val(toTitleCase($(this).val()));
 	  });
-	$(".email,.login_email").on("input",function(){
+	$(".email,.login_email,.profile_email").on("input",function(){
 	    $(this).val(($(this).val()).toLowerCase());
 	});
 	$(".product_amount,.product_price").on("input",function(){
