@@ -144,5 +144,6 @@
  			"upload_update_profile"=>"For upload image,click on image.",
  			"enter_your_name"=>"Please enter your name",
  			"date_format_error"=>"Please enter date by day-month-Year",
+ 			"year"=>"Year",
  		);
 ?>

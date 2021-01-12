@@ -62,6 +62,34 @@ if($_SESSION['lang']=='en'){
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-lg-6 col-md-6">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-3 col-lg-3">
+						<div class="form-group">
+							<label class="form-control border-0 bg-light"><?php echo $lang["year"] ?></label>
+						</div>
+					</div>
+					<div class="col-md-9 col-lg-9">
+						<div class="form-group">
+							<select class="form-control select_yearly">
+								<option><?php echo date("Y") ?></option>
+								<option><?php echo date("Y")-1 ?></option>
+								<option><?php echo date("Y")-2 ?></option>
+								<option><?php echo date("Y")-3 ?></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6">
+			<div class="form-group">
+				<button class="btn bg-success text-white form-control"><?php echo $lang["save"] ?></button>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="container">
 	<div class="row my-2">
@@ -95,7 +123,7 @@ if($_SESSION['lang']=='en'){
 	$.ajax({
 		url:"../ajax/day_by_day.php",
 		type:"POST",
-		data:{"action_day_by_day":"product in day buy day","month":$(".select_monthly").val(),"product_type":$(".select_tea_type_during_monthly").val(),"page":1},
+		data:{"action_day_by_day":"product in day buy day","month":$(".select_monthly").val(),"product_type":$(".select_tea_type_during_monthly").val(),"page":1,"year":$(".select_yearly").val()},
 		success: function(data){
 			$(".result_check_day_buy_day").children("tr").remove();
 			$(".total_day_buy_day").children("div").remove();
@@ -113,11 +141,11 @@ if($_SESSION['lang']=='en'){
 			}			
 		}
 	});
-	$(".select_monthly,.select_tea_type_during_monthly").on("change",function(){
+	$(".select_monthly,.select_tea_type_during_monthly,.select_yearly").on("change",function(){
 		$.ajax({
 			url:"../ajax/day_by_day.php",
 			type:"POST",
-			data:{"action_day_by_day":"product in day buy day","month":$(".select_monthly").val(),"product_type":$(".select_tea_type_during_monthly").val(),"page":1},
+			data:{"action_day_by_day":"product in day buy day","month":$(".select_monthly").val(),"product_type":$(".select_tea_type_during_monthly").val(),"page":1,"year":$(".select_yearly").val()},
 			success: function(data){
 				$(".result_check_day_buy_day").children("tr").remove();
 				$(".total_day_buy_day").children("div").remove();
@@ -137,9 +165,6 @@ if($_SESSION['lang']=='en'){
 		});
 	});
 	function Pagination_Check_Day_Buy_Day(data,page,total,type,pagination){
-		console.log(page);
-		console.log(total);
-		console.log(pagination);
 		if(type){
 			var d_type="<?php echo $lang['tea_type_choosen'][0] ?>";
 		}

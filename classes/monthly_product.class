@@ -9,6 +9,7 @@
         public function Select_Daily_Products_Monthly($request){
         	$month=$request["month_name"];
         	$type=$request["tea_type"];
+            $year=$request["year"];
         	$limit = '10';
             $page = 1;
             if((int)$request["page"] > 1)
@@ -25,13 +26,13 @@
             } 
             $check_type='';
         	if($type==0){
-        		$select="SELECT id,SUM(d_product_amount) as d_product_amount,SUM(d_todal_price) as d_todal_price,daily_create,d_type FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' GROUP BY daily_create ";
-        		$count="SELECT COUNT(id),SUM(d_product_amount) as total_amount,SUM(d_todal_price) as total_price FROM ".$this->table_name." WHERE MONTH(daily_create)='$month'";
+        		$select="SELECT id,SUM(d_product_amount) as d_product_amount,SUM(d_todal_price) as d_todal_price,daily_create,d_type FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' AND YEAR(daily_create)='$year' GROUP BY daily_create ";
+        		$count="SELECT COUNT(id),SUM(d_product_amount) as total_amount,SUM(d_todal_price) as total_price FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' AND YEAR(daily_create)='$year'";
         		$check_type="all type";
         	}else{
         		$type=(int)$type-1;
-        		$select="SELECT * FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' AND d_type='$type'";
-        		$count="SELECT COUNT(id),SUM(d_product_amount) as total_amount,SUM(d_todal_price) as total_price FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' AND d_type='$type'";
+        		$select="SELECT * FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' AND d_type='$type' AND YEAR(daily_create)='$year'";
+        		$count="SELECT COUNT(id),SUM(d_product_amount) as total_amount,SUM(d_todal_price) as total_price FROM ".$this->table_name." WHERE MONTH(daily_create)='$month' AND d_type='$type' AND YEAR(daily_create)='$year'";
         	}
         	$filter_query = $select . 'LIMIT '.$start.', '.$limit.'';
             $statement = $this->conn->prepare($select);

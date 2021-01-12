@@ -5,7 +5,7 @@
 	$db=$database->getConnection();
 	$monthly_buy_product=new Monly_Buy_Tea($db);
 if(isset($_POST["action_day_by_day"])){
-	$data=array("month_name"=>((int)$_POST["month"]+1),"tea_type"=>$_POST["product_type"],"page"=>$_POST["page"]);
+	$data=array("month_name"=>((int)$_POST["month"]+1),"tea_type"=>$_POST["product_type"],"page"=>$_POST["page"],"year"=>$_POST["year"]);
 	$result=$monthly_buy_product->Select_Daily_Products_Monthly($data);
 	$value=json_encode($result);
 	print_r($value);
