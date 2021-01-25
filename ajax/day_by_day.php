@@ -10,5 +10,16 @@ if(isset($_POST["action_day_by_day"])){
 	$value=json_encode($result);
 	print_r($value);
 }
+if(isset($_POST["action_day_by_day_del"])){
+	$data=array("prodcut_id"=>$_POST["product_id"]);
+	$result=$monthly_buy_product->Delete_Product_Monthly($data);
+	print_r($result);
+}
+if(isset($_POST["action_detail_daily"])){
+	$data=array("date"=>$_POST["today_date"],"product_type"=>$_POST["product_type"],"page"=>$_POST["page"]);
+	$result=$monthly_buy_product->Detail_Product_By_Daily($data);
+	$result_value_encode=json_encode($result);
+	print_r($result_value_encode);
+}
 
 ?>

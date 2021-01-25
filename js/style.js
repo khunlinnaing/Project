@@ -45,9 +45,14 @@ $(document).ready(function(){
 		$(".updat_total_price").val($(this).parent("div").parent("td").parent("tr").children("td:eq(6)").text());
 		$(".update_by_product_id").val($(this).parent("div").children(".product_id").val());
 	});
+	
 	$(document).on("click",".delete_btn_today",function(){
 		$("#delete_modal_today").modal("show");
 		$(".delete_by_product_id").val($(this).parent("div").children(".product_id").val());
+	});
+	$(document).on("click",".delete_day_by_day_val",function(){
+		$("#delete_modal_day_by_day").modal("show");
+		$(".delete_by_product_id_day_by_day").val($(this).parent("div").children("input").val());
 	});
 	
 })

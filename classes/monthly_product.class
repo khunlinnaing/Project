@@ -51,6 +51,59 @@
             	return array("result"=>"0");
             }
         }
+        public function Delete_Product_Monthly($request){
+            $product_id=$request["prodcut_id"];
+            $delete="DELETE FROM ".$this->table_name." WHERE id='$product_id'";
+            $statement_delete = $this->conn->prepare($delete);
+            $result=$statement_delete->execute();
+            if($result){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        public function Detail_Product_By_Daily($request){
+            $limit = '10';
+            $date=$request["date"];
+            $type=$request["product_type"];
+            $page = 1;
+            if((int)$request["page"] > 1)
+            {
+              $val=(((int)$request["page"])-1);
+              $start = ($val * $limit);
+              $page = (int)$request["page"];
+              $row_number=(($page-1)*(int)$limit)+1;
+            }
+            else
+            {
+              $start = 0;
+              $row_number=1;
+            }
+            if($type==0){
+                $query="SELECT * FROM tea WHERE DATE(create_date)='$date'";
+                $sum="SELECT SUM(product_amount) as total_amount,SUM(total) as total_price FROM tea  WHERE DATE(create_date)='$date'";
+            }else{
+                $type=$type-1;
+                $query="SELECT * FROM tea WHERE product_type='$type' AND DATE(create_date)='$date'";
+                $sum="SELECT SUM(product_amount) as total_amount,SUM(total) as total_price FROM tea  WHERE product_type='$type' AND DATE(create_date)='$date'";
+            }
+            $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
+            $statement = $this->conn->prepare($query);
+            $statement->execute();
+            $total_data = $statement->rowCount();
+            $statement = $this->conn->prepare($filter_query);
+            $statement->execute();
+            $result = $statement->fetchAll();
+            $sum_val = $this->conn->prepare($sum);
+            $sum_result=$sum_val->execute();
+            $result_sum_value=$sum_val->fetch();
+            $pagnation_no=ceil($total_data/$limit);
+            if(isset($result)){
+                return array("result"=>$result,"pagnation"=>$pagnation_no,"page"=>$request["page"],"total"=>$total_data,"sum_value"=>$result_sum_value);
+            }else{
+                return array("result"=>"0");
+            }
+        }
     }
 
 ?>
